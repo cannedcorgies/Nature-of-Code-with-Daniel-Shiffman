@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment 1 - Like, literally, dude</title>
+	<title>Experiment 1 - Random Walk</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -12,6 +12,14 @@
 	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
 	<link rel="stylesheet" type="text/css" href="../css/site.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<style>
+        #myContainer1, canvas {
+            width: 50vw;  /* Full viewport width */
+            height: 50vh; /* Full viewport height */
+            display: block; /* Removes extra margins */
+        }
+    </style>
 
 	<!-- Load jQuery library -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -31,7 +39,7 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment 1 - Like, literally, dude</h1>
+			<h1>Experiment 1 - Random Walk</h1>
 
 			<div class="minor-section">
 				<head>
@@ -42,13 +50,7 @@
 					<script src="/project.js" defer></script>
 				</head>
 				<body>
-					<button id="clicker">
-					  reroll it
-					</button>
-					<div
-					  style="font-family: fantasy; border: thin solid gray; padding: 1em; margin: 1em; box-shadow: 2px 2px 5px gray; background: #ffe;"
-					  id="box"
-					></div>
+					<div id='myContainer1'></div>
 				</body>
                 <div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
@@ -81,5 +83,20 @@
             </ul>
 		</nav>
 	</main>
+<script>
+document.getElementById("fullscreen").addEventListener("click", function() {
+	let elem = document.getElementById("myContainer1");
+	
+	if (elem.requestFullscreen) {
+		elem.requestFullscreen();
+	} else if (elem.mozRequestFullScreen) { // Firefox
+		elem.mozRequestFullScreen();
+	} else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Opera
+		elem.webkitRequestFullscreen();
+	} else if (elem.msRequestFullscreen) { // IE/Edge
+		elem.msRequestFullscreen();
+	}
+});
+</script>
 </body>
 </html>
