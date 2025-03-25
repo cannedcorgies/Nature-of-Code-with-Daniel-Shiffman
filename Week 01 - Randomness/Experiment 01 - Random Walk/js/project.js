@@ -12,19 +12,27 @@ class Walker {
   show() {
     
     stroke(0);
-    point(this.x, this.y);
+    circle(this.x, this.y, size);
 
   }
 
   // randomly choose movement direction (right, left, down, up)
   step() {
 
-    let choice = floor(random(4));
+    let xRandom = random(1);
+    let yRandom = random(1);
 
-    if (choice === 0) { this.x += speed; }       // right
-    else if (choice === 1) { this.x -= speed; }  // left
-    else if (choice ===2) { this.y += speed; }   // down
-    else { this.y -= speed; }                    // up
+    if (xRandom < xRightProb) {
+      this.x += speed;
+    } else {
+      this.x -= speed;
+    }
+    
+    if (yRandom < yDownProb) {
+      this.y += speed;
+    } else {
+      this.y -= speed;
+    }
 
   }
 
@@ -39,7 +47,10 @@ class Walker {
 }
 
 // ===== VARIABLES =====
-let speed = 10;
+let speed = 3; // veiny when low, ghostly when high!
+let size = 1;
+let xRightProb = 0.7;   // chance of right
+let yDownProb = 0.7;
 let walker;
 
 // ===== PROGRRAM =====
@@ -49,11 +60,21 @@ function setup() {
   canvas1.parent('myContainer1');
   walker = new Walker();
   background(255);
+  start();
+
+}
+
+function start() {
+
+  this.x = windowWidth/2;
+  this.y = windowHeight/2;
 
 }
 
 function draw() {
 
   walker.update();
+  if (xRightProb > 1) { xRightProb = 1; }
+  if (yDownProb > 1) { yDownProb = 1; }
 
 }
